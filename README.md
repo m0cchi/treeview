@@ -1,6 +1,6 @@
 # Treeview
 
-TODO: Write a gem description
+TreeView
 
 ## Installation
 
@@ -19,8 +19,34 @@ Or install it yourself as:
     $ gem install treeview
 
 ## Usage
+```
+require 'treeview'
 
-TODO: Write usage instructions here
+dir = [
+  {
+    :Applications => [
+       :'Safari.app'
+    ]
+  },
+  {
+    :Users => [
+      {
+        :mocchi => [
+          :bin,:Document
+        ]
+      }
+    ]
+  }
+] 
+puts TreeView::tree(dir)
+
+#|__Applications
+#|  \__Safari.app
+#\__Users
+#   \__mocchi
+#         |__bin
+#               \__Document
+```
 
 ## Contributing
 
