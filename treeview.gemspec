@@ -5,13 +5,13 @@ require 'treeview/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "treeview"
-  spec.version       = Treeview::VERSION
-  spec.authors       = ["mkalloc"]
-  spec.email         = ["mkalloc.dev@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.version       = TreeView::VERSION
+  spec.authors       = ["mocchi"]
+  spec.email         = ["boom.boom.planet@gmail.com"]
+  spec.summary       = %q{tree view command && lib}
+  spec.description   = %q{tree view command && lib}
+  spec.homepage      = "https://github.com/mocchit/treeview"
+  spec.license       = "GPLv3"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
