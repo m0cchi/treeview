@@ -44,8 +44,8 @@ puts TreeView::tree(dir)
 #|  \__Safari.app
 #\__Users
 #   \__mocchi
-#         |__bin
-#               \__Document
+#      |__bin
+#      \__Document
 ```
 
 ## Contributing
