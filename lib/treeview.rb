@@ -12,6 +12,28 @@ module TreeView
     @@SPACE * (nest - 1) + (pos != last ? @@BRANCH : @@END_BRANCH)
   end
 
+  def self.valid(source)
+    err = ->source{raise "invalid scheme:#{source}"}
+    checks = []
+    list = nil
+    if HASH_CLASS == source.class
+      list = source.values
+      checks << ->e{valid(e) && e.class == ARRAY_CLASS}
+    elsif ARRAY_CLASS == source.class
+      list = source
+      checks << ->e{valid(e) && e.class != ARRAY_CLASS}
+    else
+      return true
+    end
+
+    list.each do |e|
+      checks.each do |check|
+        return false unless check.call(e)
+      end
+    end
+    true
+  end
+
   def self.finally(tree)
     tree = tree.split("\n").map!(&:chars)
     (0..(tree.length-1)).each do |y|
