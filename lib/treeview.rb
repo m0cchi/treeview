@@ -18,7 +18,7 @@ module TreeView
     checks = []
     list = []
     if BRANCH_CLASS.include?(source.class)
-      list = source.values
+      list = source.class == HASH_CLASS ? source.values : source
       checks << ->e{valid(e) && e.class != source.class}
     end
     
