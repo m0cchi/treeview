@@ -4,6 +4,7 @@ require_relative "treeview/version.rb"
 module TreeView
   HASH_CLASS = {}.class
   ARRAY_CLASS = [].class
+  BRANCH_CLASS = [HASH_CLASS,ARRAY_CLASS]
   @@END_BRANCH = '\\__'
   @@BRANCH = '|__'
   @@SPACE = '   '
@@ -16,16 +17,13 @@ module TreeView
     err = ->source{raise "invalid scheme:#{source}"}
     checks = []
     list = nil
-    if HASH_CLASS == source.class
+    if BRANCH_CLASS.include?(source.class)
       list = source.values
-      checks << ->e{valid(e) && e.class == ARRAY_CLASS}
-    elsif ARRAY_CLASS == source.class
-      list = source
-      checks << ->e{valid(e) && e.class != ARRAY_CLASS}
+      checks << ->e{valid(e) && e.class != source.class}
     else
       return true
     end
-
+    
     list.each do |e|
       checks.each do |check|
         return false unless check.call(e)
@@ -51,7 +49,7 @@ module TreeView
   def self.parse(source,nest = 0)
     str = ''
 
-    if [HASH_CLASS,ARRAY_CLASS].include?(source.class)
+    if BRANCH_CLASS.include?(source.class)
       len = source.length
     end
 
