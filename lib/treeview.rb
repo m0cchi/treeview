@@ -16,12 +16,10 @@ module TreeView
   def self.valid(source)
     err = ->source{raise "invalid scheme:#{source}"}
     checks = []
-    list = nil
+    list = []
     if BRANCH_CLASS.include?(source.class)
       list = source.values
       checks << ->e{valid(e) && e.class != source.class}
-    else
-      return true
     end
     
     list.each do |e|
